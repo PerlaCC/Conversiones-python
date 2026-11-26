@@ -53,9 +53,30 @@ def test_kg_a_libras():
     assert c.kg_a_libras(1) == pytest.approx(2.20462, rel=1e-5)
 
 
+def test_celsius_a_fahrenheit():
+    assert c.celsius_a_fahrenheit(0) == pytest.approx(32)
+    assert c.celsius_a_fahrenheit(100) == pytest.approx(212)
+
+
+def test_fahrenheit_a_celsius():
+    assert c.fahrenheit_a_celsius(32) == pytest.approx(0)
+    assert c.fahrenheit_a_celsius(-40) == pytest.approx(-40)
+
+
+def test_onzas_a_gramos():
+    assert c.onzas_a_gramos(1) == pytest.approx(28.349523125)
+    assert c.onzas_a_gramos(16) == pytest.approx(453.59237)
+
+
+def test_gramos_a_onzas():
+    assert c.gramos_a_onzas(28.349523125) == pytest.approx(1)
+    assert c.gramos_a_onzas(100) == pytest.approx(3.5274, rel=1e-4)
+
+
 def test_cero_en_todas():
     for f in (c.cm_a_pulgadas, c.pulgadas_a_cm, c.pies_a_metros,
               c.metros_a_pies, c.millas_a_km, c.km_a_millas,
               c.galones_a_litros, c.litros_a_galones,
-              c.libras_a_kg, c.kg_a_libras):
+              c.libras_a_kg, c.kg_a_libras,
+              c.onzas_a_gramos, c.gramos_a_onzas):
         assert f(0) == 0

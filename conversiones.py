@@ -5,6 +5,7 @@ METROS_POR_PIE = 0.3048
 KM_POR_MILLA = 1.609344
 LITROS_POR_GALON = 3.785411784
 KG_POR_LIBRA = 0.45359237
+GRAMOS_POR_ONZA = 28.349523125
 
 
 # Longitud: cm <-> pulgadas
@@ -52,6 +53,26 @@ def kg_a_libras(kg):
     return kg / KG_POR_LIBRA
 
 
+# --- Conversiones agregadas por el equipo ---
+
+# Temperatura: Celsius <-> Fahrenheit
+def celsius_a_fahrenheit(celsius):
+    return celsius * 9 / 5 + 32
+
+
+def fahrenheit_a_celsius(fahrenheit):
+    return (fahrenheit - 32) * 5 / 9
+
+
+# Masa: onzas <-> gramos
+def onzas_a_gramos(onzas):
+    return onzas * GRAMOS_POR_ONZA
+
+
+def gramos_a_onzas(gramos):
+    return gramos / GRAMOS_POR_ONZA
+
+
 if __name__ == "__main__":
     print("=== Conversiones de medidas ===")
     print(f"10 cm        = {cm_a_pulgadas(10):.2f} pulgadas")
@@ -64,3 +85,7 @@ if __name__ == "__main__":
     print(f"10 litros    = {litros_a_galones(10):.2f} galones")
     print(f"10 libras    = {libras_a_kg(10):.2f} kg")
     print(f"10 kg        = {kg_a_libras(10):.2f} libras")
+    print(f"10 °C        = {celsius_a_fahrenheit(10):.2f} °F")
+    print(f"10 °F        = {fahrenheit_a_celsius(10):.2f} °C")
+    print(f"10 onzas     = {onzas_a_gramos(10):.2f} gramos")
+    print(f"10 gramos    = {gramos_a_onzas(10):.2f} onzas")
