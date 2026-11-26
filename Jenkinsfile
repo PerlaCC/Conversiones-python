@@ -1,0 +1,35 @@
+pipeline {
+    agent {
+        label 'python'
+    }
+
+    stages {
+        stage('Entorno') {
+            steps {
+                sh 'python3 --version'
+                sh 'pip3 --version'
+                sh 'pip install pytest'
+            }
+        }
+        stage('Descarga') {
+            steps {
+                git url: 'https://github.com/PerlaCC/Conversiones-python.git', branch: 'main'
+            }
+        }
+        stage('Ejecutar') {
+            steps {
+                sh 'python3 conversiones.py'
+            }
+        }
+        stage('Probar') {
+            steps {
+                sh 'python3 -m pytest --junitxml=reports/results.xml'
+            }
+            post {
+                always {
+                    junit 'reports/results.xml'
+                }
+            }
+        }
+    }
+}
